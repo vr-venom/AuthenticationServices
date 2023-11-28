@@ -13,4 +13,6 @@ public interface SessionRepository extends JpaRepository<Session, Long> {
     Optional<Session> findSessionByUserId(Long id);
 
     Optional<Session> findByToken(String token);
+
+    Optional<Session> findByTokenAndUser_Id(String token, Long userId);
 }
