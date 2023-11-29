@@ -45,13 +45,16 @@ public class AuthController {
     @PostMapping("/validate")
     public ResponseEntity<ValidateTokenResponseDtos> validateToken(@RequestBody ValidateTokenRequestDto request) {
         Optional<UserDto> userDto = authService.validate(request.getToken(), request.getUserId());
-        ValidateTokenResponseDtos response = new ValidateTokenResponseDtos();
         if(userDto.isEmpty()){
-
+            ValidateTokenResponseDtos response = new ValidateTokenResponseDtos();
             response.setSessionStatus(SessionStatus.INVALID);
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
+        ValidateTokenResponseDtos response = new ValidateTokenResponseDtos();
+        response.setSessionStatus(SessionStatus.ACTIVE);
+        response.setUserDto(userDto.get());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 
 }

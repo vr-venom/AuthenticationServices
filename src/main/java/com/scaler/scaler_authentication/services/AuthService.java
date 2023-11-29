@@ -124,13 +124,13 @@ public class AuthService {
         Optional<Session> sessionOptional = sessionRepository.findByTokenAndUser_Id(token, userId);
 
         if (sessionOptional.isEmpty()) {
-            return Optional.empty()
+            return Optional.empty();
         }
 
         Session session = sessionOptional.get();
 
         if (!session.getSessionStatus().equals(SessionStatus.ACTIVE)) {
-            return Optional.empty()
+            return Optional.empty();
         }
         User user = userRepository.findById(userId).get();
         UserDto userDto = UserDto.from(user);

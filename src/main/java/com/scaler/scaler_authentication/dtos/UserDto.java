@@ -7,11 +7,10 @@ import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@NoArgsConstructor
+
 @Getter
 @Setter
-@AllArgsConstructor
-@Data
+
 public class UserDto {
     private String email;
     private Set<Role> roles = new HashSet<>();
